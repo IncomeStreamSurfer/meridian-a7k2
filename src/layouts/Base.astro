@@ -1,0 +1,58 @@
+---
+import '../styles/global.css';
+import SEOHead from '../components/SEOHead.astro';
+
+interface Props {
+  title: string;
+  description: string;
+  ogType?: string;
+  structuredData?: object | object[];
+  canonicalUrl?: string;
+}
+
+const { title, description, ogType, structuredData, canonicalUrl } = Astro.props;
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <SEOHead
+      title={title}
+      description={description}
+      ogType={ogType}
+      structuredData={structuredData}
+      canonicalUrl={canonicalUrl}
+    />
+  </head>
+  <body class="min-h-screen bg-cream text-espresso dark:bg-ink dark:text-cream transition-colors duration-500">
+    <slot />
+    <script is:inline>
+      (() => {
+        const saved = localStorage.getItem('meridian-theme');
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        if (saved === 'dark' || (!saved && prefersDark)) {
+          document.documentElement.classList.add('dark');
+        }
+      })();
+    </script>
+    <script is:inline>
+      document.addEventListener('DOMContentLoaded', () => {
+        const io = new IntersectionObserver((entries) => {
+          for (const e of entries) {
+            if (e.isIntersecting) {
+              e.target.classList.add('is-in');
+              io.unobserve(e.target);
+            }
+          }
+        }, { threshold: 0.12 });
+        document.querySelectorAll('.reveal').forEach((el) => io.observe(el));
+
+        const toggle = document.querySelector('[data-theme-toggle]');
+        toggle?.addEventListener('click', () => {
+          const html = document.documentElement;
+          const isDark = html.classList.toggle('dark');
+          localStorage.setItem('meridian-theme', isDark ? 'dark' : 'light');
+        });
+      });
+    </script>
+  </body>
+</html>

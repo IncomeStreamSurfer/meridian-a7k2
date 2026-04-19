@@ -1,0 +1,139 @@
+---
+import Base from '../layouts/Base.astro';
+import Nav from '../components/Nav.astro';
+import WaitlistForm from '../components/WaitlistForm.astro';
+
+const siteUrl = import.meta.env.PUBLIC_SITE_URL || 'https://meridian-a7k2.vercel.app';
+
+const structuredData = [
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Meridian",
+    "url": siteUrl,
+    "logo": `${siteUrl}/favicon.svg`,
+    "description": "A specialty coffee brand sourcing rare single-origin beans from peak-altitude farms.",
+    "sameAs": []
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "Meridian",
+    "url": siteUrl,
+    "description": "Where Every Cup Finds Its Peak — a specialty coffee brand launching soon."
+  }
+];
+---
+<Base
+  title="Meridian — Specialty Coffee Coming Soon"
+  description="Meridian is a new specialty coffee brand sourcing rare single-origin beans from peak-altitude farms. Join the waitlist for early access and first roast drops."
+  structuredData={structuredData}
+>
+
+  <div class="relative min-h-screen overflow-hidden">
+    <div class="absolute inset-0 -z-10">
+      <div class="absolute inset-0 slowpan">
+        <img
+          src="https://images.unsplash.com/photo-1447933601403-0c6688de566e?auto=format&fit=crop&w=2000&q=80"
+          alt="Hand-poured coffee in a stoneware cup over dark wood"
+          class="h-full w-full object-cover opacity-[0.22] dark:opacity-[0.38]"
+          loading="eager"
+        />
+      </div>
+      <div class="absolute inset-0 bg-gradient-to-b from-cream via-cream/85 to-cream dark:from-ink dark:via-ink/80 dark:to-ink"></div>
+      <div class="grain"></div>
+    </div>
+
+    <Nav active="home" />
+
+    <section class="relative px-6 md:px-12 lg:px-16 pt-20 md:pt-28 pb-24">
+      <div class="mx-auto max-w-6xl">
+        <div class="flex items-center gap-4 eyebrow opacity-70 reveal">
+          <span>Est. 2026</span>
+          <span class="h-px w-10 bg-current/40"></span>
+          <span>Specialty Coffee · Coming Soon</span>
+        </div>
+
+        <h1 class="serif mt-10 text-[clamp(3rem,9vw,9rem)] leading-[0.92] tracking-[-0.02em] reveal">
+          Specialty<br/>
+          <span class="italic font-light text-copper">Coffee</span>
+          Worth the Wait
+        </h1>
+
+        <div class="mt-10 max-w-xl reveal">
+          <p class="text-lg md:text-xl leading-relaxed opacity-80">
+            Meridian sources rare single-origin beans from farms that sit above three thousand metres —
+            where the air is thin, the cherries ripen slowly, and the cup finds its peak. Our first roast
+            drops soon. Your seat on the waitlist comes with first pour.
+          </p>
+        </div>
+
+        <div id="waitlist" class="mt-12 reveal">
+          <WaitlistForm />
+        </div>
+
+        <div class="mt-10 flex items-center gap-6 text-sm opacity-60 reveal">
+          <a href="/about" class="inline-flex items-center gap-2 border-b border-current/40 pb-0.5 hover:border-current">
+            The story behind Meridian
+            <span aria-hidden>↗</span>
+          </a>
+          <span class="hidden sm:inline">·</span>
+          <span class="hidden sm:inline">Free shipping on launch orders</span>
+        </div>
+      </div>
+
+      <div class="absolute bottom-10 left-1/2 -translate-x-1/2 text-xs eyebrow opacity-50 flex flex-col items-center gap-3">
+        <span class="h-10 w-px bg-current"></span>
+        <span>Scroll</span>
+      </div>
+    </section>
+  </div>
+
+  <section id="story" class="relative px-6 md:px-12 lg:px-16 py-28 md:py-40">
+    <div class="mx-auto max-w-6xl grid md:grid-cols-12 gap-10 md:gap-16 items-start">
+      <div class="md:col-span-5 reveal">
+        <p class="eyebrow opacity-60">I · The Meridian</p>
+        <h2 class="serif mt-6 text-4xl md:text-5xl leading-[1.05] tracking-tight">
+          Where every cup<br/> finds its peak.
+        </h2>
+      </div>
+      <div class="md:col-span-7 md:pt-4 reveal">
+        <p class="text-lg leading-relaxed opacity-85">
+          A meridian is the highest point the sun reaches in the sky. For coffee, that point
+          is altitude — the thin, cold air that slows a cherry's growth and concentrates its
+          sugars until each bean carries the character of a place: a ridgeline in Huila, a
+          volcano in Gesha, a forgotten hilltop in Yirgacheffe.
+        </p>
+        <p class="mt-6 text-lg leading-relaxed opacity-85">
+          Meridian is a small-batch roaster built around a single conviction: source from the
+          peak, roast with restraint, and ship it while it still remembers the farm.
+        </p>
+        <a href="/about" class="mt-10 inline-flex items-center gap-3 text-sm eyebrow opacity-80 hover:opacity-100">
+          Read the full story
+          <span aria-hidden>→</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="relative px-6 md:px-12 lg:px-16 pb-24">
+    <div class="mx-auto max-w-3xl text-center reveal">
+      <p class="eyebrow opacity-60">Launching soon</p>
+      <h3 class="serif mt-4 text-3xl md:text-4xl">First roast, first pour, first access.</h3>
+      <p class="mt-4 opacity-70">Drop your email — we'll notify you the moment the first batch lands.</p>
+      <div class="mt-8 flex justify-center">
+        <WaitlistForm />
+      </div>
+    </div>
+  </section>
+
+  <footer class="relative px-6 md:px-12 lg:px-16 pb-12 pt-8 border-t border-current/10">
+    <div class="mx-auto max-w-6xl flex flex-col sm:flex-row items-center justify-between gap-4 text-xs opacity-60">
+      <p>© {new Date().getFullYear()} Meridian Coffee Roasters. Where every cup finds its peak.</p>
+      <div class="flex items-center gap-6">
+        <a href="/about" class="hover:opacity-100">About</a>
+        <a href="/#waitlist" class="hover:opacity-100">Waitlist</a>
+      </div>
+    </div>
+  </footer>
+</Base>

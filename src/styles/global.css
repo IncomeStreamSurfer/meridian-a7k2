@@ -1,0 +1,90 @@
+@import "tailwindcss";
+
+@theme {
+  --font-serif: "Fraunces", Georgia, "Times New Roman", serif;
+  --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, sans-serif;
+
+  --color-cream: #F5F0E8;
+  --color-cream-dark: #EAE2D3;
+  --color-espresso: #1A1412;
+  --color-espresso-soft: #2A1F1C;
+  --color-copper: #B87333;
+  --color-copper-bright: #D4884A;
+  --color-ink: #0F0B09;
+  --color-fog: #8B8178;
+}
+
+:root {
+  color-scheme: light dark;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-family: var(--font-sans);
+  background: var(--color-cream);
+  color: var(--color-espresso);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html.dark {
+  background: var(--color-ink);
+  color: var(--color-cream);
+}
+
+body {
+  overflow-x: hidden;
+}
+
+.serif {
+  font-family: var(--font-serif);
+  font-feature-settings: "ss01", "ss02";
+}
+
+.eyebrow {
+  font-family: var(--font-sans);
+  text-transform: uppercase;
+  letter-spacing: 0.24em;
+  font-size: 0.72rem;
+  font-weight: 500;
+}
+
+.hairline {
+  background: linear-gradient(90deg, transparent, currentColor 20%, currentColor 80%, transparent);
+  height: 1px;
+  opacity: 0.35;
+}
+
+.grain {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.06;
+  mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+}
+
+html.dark .grain {
+  mix-blend-mode: screen;
+  opacity: 0.08;
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity 900ms ease, transform 900ms ease;
+}
+
+.reveal.is-in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@keyframes slowpan {
+  0% { transform: scale(1.06) translate3d(0, 0, 0); }
+  50% { transform: scale(1.1) translate3d(-1%, -1%, 0); }
+  100% { transform: scale(1.06) translate3d(0, 0, 0); }
+}
+.slowpan {
+  animation: slowpan 24s ease-in-out infinite;
+}

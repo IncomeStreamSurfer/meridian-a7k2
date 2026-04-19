@@ -1,0 +1,21 @@
+{
+  "name": "meridian-a7k2",
+  "type": "module",
+  "version": "0.0.1",
+  "engines": {
+    "node": ">=22.12.0"
+  },
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@astrojs/sitemap": "^3.7.2",
+    "@astrojs/vercel": "^8.2.8",
+    "@tailwindcss/vite": "^4.2.2",
+    "astro": "^5.14.1",
+    "tailwindcss": "^4.2.2"
+  }
+}
