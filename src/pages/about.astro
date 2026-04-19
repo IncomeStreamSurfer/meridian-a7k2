@@ -1,0 +1,196 @@
+---
+import Base from '../layouts/Base.astro';
+import Nav from '../components/Nav.astro';
+import WaitlistForm from '../components/WaitlistForm.astro';
+
+const siteUrl = import.meta.env.PUBLIC_SITE_URL || 'https://meridian-a7k2.vercel.app';
+
+const structuredData = [
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Meridian",
+    "url": siteUrl,
+    "logo": `${siteUrl}/favicon.svg`,
+    "description": "Small-batch specialty coffee roaster sourcing rare single-origin beans from peak-altitude farms."
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "The Story Behind Meridian Coffee",
+    "url": `${siteUrl}/about`,
+    "description": "How Meridian was built on a single belief: the best coffee grows at the peak."
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": siteUrl },
+      { "@type": "ListItem", "position": 2, "name": "Our Story", "item": `${siteUrl}/about` }
+    ]
+  }
+];
+---
+<Base
+  title="Our Story | Meridian Specialty Coffee"
+  description="Learn how Meridian was built on a single belief: the best coffee grows at the peak. Discover our sourcing philosophy and the farmers we partner with."
+  structuredData={structuredData}
+>
+  <div class="relative">
+    <Nav active="about" />
+
+    <section class="relative px-6 md:px-12 lg:px-16 pt-16 md:pt-24 pb-16">
+      <div class="mx-auto max-w-5xl">
+        <p class="eyebrow opacity-60 reveal">Our Story</p>
+        <h1 class="serif mt-6 text-[clamp(2.5rem,6.5vw,6rem)] leading-[0.95] tracking-[-0.02em] reveal">
+          The Story Behind<br/>
+          <span class="italic font-light text-copper">Meridian</span> Coffee.
+        </h1>
+        <p class="mt-10 max-w-2xl text-lg md:text-xl leading-relaxed opacity-85 reveal">
+          Meridian is a small batch coffee roaster built around a single conviction — that the
+          finest cups in the world are grown at the peak, hand-picked by people who care, and
+          roasted by people who listen. This is how we got here.
+        </p>
+      </div>
+    </section>
+
+    <section class="relative px-6 md:px-12 lg:px-16 pb-20 reveal">
+      <div class="relative mx-auto max-w-6xl overflow-hidden rounded-sm">
+        <img
+          src="https://images.unsplash.com/photo-1442550528053-c431ecb55509?auto=format&fit=crop&w=1800&q=80"
+          alt="Coffee cherries ripening on a high-altitude farm, mountain mist in the background"
+          class="h-[340px] md:h-[520px] w-full object-cover"
+          loading="lazy"
+        />
+        <div class="grain"></div>
+      </div>
+      <p class="mx-auto mt-4 max-w-6xl text-xs opacity-60 eyebrow">Huila, Colombia · 1,950m above sea level</p>
+    </section>
+
+    <section class="relative px-6 md:px-12 lg:px-16 pb-24">
+      <div class="mx-auto max-w-4xl space-y-24">
+
+        <article class="grid md:grid-cols-12 gap-8 items-start reveal">
+          <div class="md:col-span-3">
+            <p class="eyebrow opacity-50">Chapter I</p>
+            <p class="serif text-5xl opacity-20 mt-2">01</p>
+          </div>
+          <div class="md:col-span-9 space-y-5 text-lg leading-relaxed opacity-90">
+            <h2 class="serif text-3xl md:text-4xl leading-tight tracking-tight opacity-100">
+              A Belief in Altitude
+            </h2>
+            <p>
+              There is a reason the most celebrated coffees in the world come from mountains. Altitude
+              slows a cherry's journey — thinner air, colder nights, longer ripening. A bean that would
+              mature in four months at sea level will take nine in the highlands. In those extra months
+              the fruit concentrates, sugars settle, and the cup that follows carries complexity that
+              cannot be manufactured.
+            </p>
+            <p>
+              Meridian was founded on this: we will only buy coffee grown at or above 1,800 metres.
+              It is a narrow rule by design. It excludes most of what is sold as "premium." It forces
+              us to travel further, pay more, buy less, and wait for harvests that only come once a
+              year. We think that's the point.
+            </p>
+          </div>
+        </article>
+
+        <article class="grid md:grid-cols-12 gap-8 items-start reveal">
+          <div class="md:col-span-3">
+            <p class="eyebrow opacity-50">Chapter II</p>
+            <p class="serif text-5xl opacity-20 mt-2">02</p>
+          </div>
+          <div class="md:col-span-9 space-y-5 text-lg leading-relaxed opacity-90">
+            <h2 class="serif text-3xl md:text-4xl leading-tight tracking-tight opacity-100">
+              The Farmers We Partner With
+            </h2>
+            <p>
+              Every lot Meridian sells can be traced to a single farm, often a single lot within that
+              farm. We spend weeks a year at origin — walking drying patios in Yirgacheffe, tasting
+              ferment tanks in Huila, watching fog roll off volcanic ridges in Panama. Our partnerships
+              are long and unfashionably patient. We commit to multi-year purchase agreements at prices
+              that protect the grower from commodity swings, because the grower is the entire story.
+            </p>
+            <p>
+              A farmer who owns their land and can plan three years out will grade their cherries
+              differently than one selling to the next buyer that shows up. The cup tells you which
+              one harvested it. We taste the difference. We think you will too.
+            </p>
+          </div>
+        </article>
+
+        <article class="grid md:grid-cols-12 gap-8 items-start reveal">
+          <div class="md:col-span-3">
+            <p class="eyebrow opacity-50">Chapter III</p>
+            <p class="serif text-5xl opacity-20 mt-2">03</p>
+          </div>
+          <div class="md:col-span-9 space-y-5 text-lg leading-relaxed opacity-90">
+            <h2 class="serif text-3xl md:text-4xl leading-tight tracking-tight opacity-100">
+              Roasting With Restraint
+            </h2>
+            <p>
+              A good roast is a conversation, not a recipe. Our roastmaster, Ines, learned her craft in
+              Copenhagen and refined it through ten years of small batches in Melbourne. Her signature
+              is what she doesn't do — she roasts light enough to reveal the farm, not the flame.
+              No dark crust, no heavy caramel, no masking. You taste Ethiopia, not our kitchen.
+            </p>
+            <p>
+              Every green bean gets twenty to thirty test-roasts before we approve a profile. Every
+              production batch is cupped against the sample the morning we ship. If a roast misses by
+              a point, it doesn't leave the roastery. It becomes espresso for the staff.
+            </p>
+          </div>
+        </article>
+
+        <article class="grid md:grid-cols-12 gap-8 items-start reveal">
+          <div class="md:col-span-3">
+            <p class="eyebrow opacity-50">Chapter IV</p>
+            <p class="serif text-5xl opacity-20 mt-2">04</p>
+          </div>
+          <div class="md:col-span-9 space-y-5 text-lg leading-relaxed opacity-90">
+            <h2 class="serif text-3xl md:text-4xl leading-tight tracking-tight opacity-100">
+              Shipped While It Still Remembers the Farm
+            </h2>
+            <p>
+              Coffee peaks seven to fourteen days after roast. By the time most supermarket bags
+              reach a kitchen they have lost their memory of the farm entirely — a tired, flat echo
+              of what they once were. Meridian roasts to order. Every bag leaves the roastery within
+              forty-eight hours of the roast date printed on the label, so the first cup you pour
+              tastes the way the roastmaster intended it to.
+            </p>
+            <p>
+              That is the entire brand, really. Source from the peak. Roast with restraint. Ship
+              while it still remembers. If we can do those three things well, we don't need to say
+              much else.
+            </p>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <section class="relative px-6 md:px-12 lg:px-16 py-28 bg-espresso text-cream dark:bg-cream dark:text-ink">
+      <div class="mx-auto max-w-3xl text-center reveal">
+        <p class="eyebrow opacity-70">Be First</p>
+        <h2 class="serif mt-4 text-4xl md:text-5xl leading-tight">Join the waitlist for our first roast.</h2>
+        <p class="mt-5 opacity-80 max-w-xl mx-auto">
+          We're a few weeks out from our first harvest release. Put yourself on the list and we'll
+          open the cellar door to you before anyone else.
+        </p>
+        <div class="mt-10 flex justify-center">
+          <WaitlistForm variant="dark" />
+        </div>
+      </div>
+    </section>
+
+    <footer class="relative px-6 md:px-12 lg:px-16 py-10 border-t border-current/10">
+      <div class="mx-auto max-w-6xl flex flex-col sm:flex-row items-center justify-between gap-4 text-xs opacity-60">
+        <p>© {new Date().getFullYear()} Meridian Coffee Roasters.</p>
+        <div class="flex items-center gap-6">
+          <a href="/" class="hover:opacity-100">Home</a>
+          <a href="/#waitlist" class="hover:opacity-100">Waitlist</a>
+        </div>
+      </div>
+    </footer>
+  </div>
+</Base>

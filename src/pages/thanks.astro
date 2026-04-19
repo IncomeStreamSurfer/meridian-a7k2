@@ -1,0 +1,125 @@
+---
+import Base from '../layouts/Base.astro';
+import Nav from '../components/Nav.astro';
+
+const siteUrl = import.meta.env.PUBLIC_SITE_URL || 'https://meridian-a7k2.vercel.app';
+
+const structuredData = {
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "You're In | Meridian Specialty Coffee Waitlist",
+  "url": `${siteUrl}/thanks`,
+  "description": "Confirmation page after joining the Meridian waitlist."
+};
+
+const shareText = encodeURIComponent("I just reserved my seat on the @MeridianCoffee waitlist. Specialty coffee from peak-altitude farms — their first roast drops soon.");
+const shareUrl = encodeURIComponent(siteUrl);
+---
+<Base
+  title="You're In | Meridian Specialty Coffee Waitlist"
+  description="You've secured your spot on the Meridian waitlist. We'll reach out the moment our first roast is ready. Tell a friend and move up the queue."
+  structuredData={structuredData}
+>
+  <div class="relative min-h-screen flex flex-col">
+    <div class="absolute inset-0 -z-10 overflow-hidden">
+      <div class="absolute inset-0 slowpan">
+        <img
+          src="https://images.unsplash.com/photo-1442550528053-c431ecb55509?auto=format&fit=crop&w=2000&q=80"
+          alt="Coffee cherries ripening on the branch"
+          class="h-full w-full object-cover opacity-[0.18] dark:opacity-[0.28]"
+        />
+      </div>
+      <div class="absolute inset-0 bg-gradient-to-b from-cream via-cream/90 to-cream dark:from-ink dark:via-ink/90 dark:to-ink"></div>
+      <div class="grain"></div>
+    </div>
+
+    <Nav />
+
+    <section class="flex-1 flex items-center justify-center px-6 md:px-12 lg:px-16 py-20">
+      <div class="w-full max-w-2xl text-center">
+        <div class="reveal">
+          <div class="inline-flex items-center gap-3 eyebrow opacity-70">
+            <span class="h-px w-8 bg-current"></span>
+            Confirmed
+            <span class="h-px w-8 bg-current"></span>
+          </div>
+        </div>
+
+        <h1 class="serif mt-8 text-[clamp(2.25rem,6vw,5rem)] leading-[0.98] tracking-[-0.02em] reveal">
+          You're on the list — thanks<br/>
+          for joining <span class="italic font-light text-copper">Meridian</span>.
+        </h1>
+
+        <p class="mt-8 mx-auto max-w-xl text-lg leading-relaxed opacity-85 reveal">
+          Your seat is saved. When our first single-origin roast is pulled from the cooler — somewhere
+          in the next few weeks — you'll get one email with early access. That's it. No newsletters,
+          no padding.
+        </p>
+
+        <p class="mt-4 mx-auto max-w-xl opacity-75 reveal">
+          Check your inbox (and your spam folder, honestly) for a confirmation from us.
+        </p>
+
+        <div class="mt-14 reveal">
+          <p class="eyebrow opacity-60">Move up the queue</p>
+          <p class="mt-3 opacity-75 max-w-md mx-auto text-sm">
+            Tell a friend with good taste. We bump referrers to the front of the launch drop.
+          </p>
+          <div class="mt-6 flex flex-wrap items-center justify-center gap-3">
+            <a href={`https://twitter.com/intent/tweet?text=${shareText}&url=${shareUrl}`}
+               target="_blank" rel="noopener"
+               class="inline-flex items-center gap-2 rounded-full border border-current/25 px-5 py-2.5 text-sm hover:border-copper hover:text-copper transition">
+              Share on X
+              <svg class="h-3.5 w-3.5" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+            </a>
+            <a href={`https://www.linkedin.com/sharing/share-offsite/?url=${shareUrl}`}
+               target="_blank" rel="noopener"
+               class="inline-flex items-center gap-2 rounded-full border border-current/25 px-5 py-2.5 text-sm hover:border-copper hover:text-copper transition">
+              Share on LinkedIn
+            </a>
+            <button
+              data-copy-link
+              data-url={siteUrl}
+              class="inline-flex items-center gap-2 rounded-full border border-current/25 px-5 py-2.5 text-sm hover:border-copper hover:text-copper transition">
+              <span data-copy-label>Copy link</span>
+              <svg class="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75">
+                <rect x="9" y="9" width="11" height="11" rx="2"/>
+                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <div class="mt-16 reveal">
+          <div class="hairline mx-auto w-40 text-current"></div>
+          <div class="mt-8 flex flex-wrap items-center justify-center gap-6 text-sm opacity-75">
+            <a href="/" class="inline-flex items-center gap-2 hover:opacity-100 hover:text-copper transition">← Back to home</a>
+            <span class="opacity-40">·</span>
+            <a href="/about" class="inline-flex items-center gap-2 hover:opacity-100 hover:text-copper transition">Read our story →</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="relative px-6 md:px-12 lg:px-16 py-8 text-center text-xs opacity-60">
+      Where every cup finds its peak.
+    </footer>
+  </div>
+
+  <script is:inline>
+    document.addEventListener('DOMContentLoaded', () => {
+      const btn = document.querySelector('[data-copy-link]');
+      btn?.addEventListener('click', async () => {
+        const url = btn.getAttribute('data-url') || window.location.origin;
+        const label = btn.querySelector('[data-copy-label]');
+        try {
+          await navigator.clipboard.writeText(url);
+          if (label) label.textContent = 'Copied!';
+          setTimeout(() => { if (label) label.textContent = 'Copy link'; }, 1800);
+        } catch (e) {
+          if (label) label.textContent = 'Copy failed';
+        }
+      });
+    });
+  </script>
+</Base>
